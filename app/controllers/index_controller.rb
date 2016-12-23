@@ -13,6 +13,7 @@ get '/:twitter_handle' do
   @user = TwitterUser.find_by(handle: params[:twitter_handle])
   if @user
     @tweets = @user.tweets
+    @mentions = @user.mentions
     unless @user.fresh_tweets?
       @user.refresh_tweets
       @tweets = @user.tweets
@@ -21,12 +22,13 @@ get '/:twitter_handle' do
     @user = TwitterUser.create(handle: params[:twitter_handle])
     @user.refresh_tweets
     @tweets = @user.tweets
+    @mentions = @user.mentions
   end
   erb :'tweets'
 end
 
 post '/tweet' do
-  @user = TwitterUser.find_by(handle: params[:twitter_handle])
+  @user = TwitterUser.find_by(handle: "cheeryconverter")
   @user.client.update(params[:tweet_body])
   @user.tweets.create(full_text: params[:tweet_body])
   redirect "/#{@user.handle}"

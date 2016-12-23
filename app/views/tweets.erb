@@ -7,6 +7,17 @@
   <% end %>
 </ul>
 
+<h2>Tweets mentioning: <%= @user.handle %></h2>
+<ul>
+  <% @mentions.each do |mentioned_tweet| %>
+    <% if temperature_question(mentioned_tweet) %>
+      <li><%= mentioned_tweet %>
+      <li><% new_tweet = "@#{mentioned_tweet.user.screen_name}" + make_tweet(mentioned_tweet) %></li>
+      <% @user.client.update(make_tweet(mentioned_tweet)) %>
+    <%end%>
+  <%end%>
+</ul>
+
 
 <% if @user.handle == "cheeryconverter" %>
   <%= erb :'post_tweet' %>
