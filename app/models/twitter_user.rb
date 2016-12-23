@@ -14,7 +14,7 @@ class TwitterUser < ActiveRecord::Base
 
   def refresh_tweets
     self.tweets.destroy_all
-    client.user_timeline(handle, count: 15).each do |tweet|
+    client.user_timeline(handle, count: 30).each do |tweet|
       self.tweets.create(full_text: tweet.full_text, twitter_id: tweet.id)
     end
   end

@@ -15,12 +15,24 @@ html {
 /**
  * Remove default margin.
  */
-
-body {
-  margin: 0;
-  background-color:  blue;
+#search-form {
+  color: black;
 }
 
+#post-form {
+  color: black;
+}
+
+.link-text {
+  color: red;
+}
+body {
+  background-color:  blue;
+  color:  white;
+  width: 600px;
+  margin: 0 auto;
+  padding-left: 50px;
+}
 /* HTML5 display definitions
    ========================================================================== */
 
