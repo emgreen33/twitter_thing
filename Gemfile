@@ -1,3 +1,4 @@
+
 source 'https://rubygems.org'
 
 # PostgreSQL driver
@@ -12,7 +13,8 @@ gem 'activerecord', '~>4.2.0'
 
 gem 'rake'
 
-gem 'shotgun', '~>0.9.1'
+gem 'shotgun'
+
 gem 'bcrypt'
 gem 'twitter'
 gem 'figaro'
@@ -22,13 +24,7 @@ gem 'dotenv'
 gem 'foreman'
 
 group :test do
-  gem 'shoulda-matchers'
-  gem 'rack-test'
-  gem 'rspec', '~>3.0'
-  gem 'capybara'
-end
-
-group :test, :development do
-  gem 'factory_girl'
   gem 'faker'
+  gem 'rspec', '~> 3.4'
+  gem 'shoulda-matchers'
 end
