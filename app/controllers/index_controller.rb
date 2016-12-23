@@ -20,7 +20,7 @@ get '/:twitter_handle' do
   else
     @user = TwitterUser.create(handle: params[:twitter_handle])
     @user.refresh_tweets
-    @tweets = user.tweets
+    @tweets = @user.tweets
   end
   erb :'tweets'
 end
