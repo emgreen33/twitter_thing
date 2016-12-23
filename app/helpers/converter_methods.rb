@@ -9,7 +9,8 @@ helpers do
   end
 
   def find_num(tweet)
-    num = tweet[/\d+/].to_i
+    # num = tweet[/\d+/].to_i
+    num = tweet[/-?[0-9]\d*(\.\d+)?/].to_i
   end
 
   def temperature_question(t)

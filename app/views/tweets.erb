@@ -13,13 +13,13 @@
     <% @mentions.each do |mentioned_tweet| %>
       <% if temperature_question(mentioned_tweet.full_text) %>
         <li><%= mentioned_tweet.full_text %>
-        <% new_tweet = "@#{mentioned_tweet.user.screen_name} " + make_tweet(mentioned_tweet.full_text) %>
+        <% new_tweet = "@#{mentioned_tweet.user.screen_name} " + make_tweet(mentioned_tweet.full_text) + "🍾🍸🍷🎉"%>
         <li><%= new_tweet %></li><br>
+
         <% @user.client.update(new_tweet, in_reply_to_status_id: mentioned_tweet.id) %>
       <%end%>
     <%end%>
   </ul>
     <%= erb :'post_tweet' %>
 <%end%>
-
 

@@ -1,5 +1,6 @@
 get '/' do
   @users = TwitterUser.all
+  @all_tweets = Tweet.all
   erb :'index'
 end
 

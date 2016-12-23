@@ -5,8 +5,11 @@
 
 <ul>
   <% @users.each do |user| %>
-    <li>twitter handle:  <a class="link-text" href="/<%=user.handle%>"> <%= user.handle %></a></li>
-    <li><%= user.tweets.count %> tweets in the system</li><br><br>
-    <% end %>
+    <li>User:  <a class="link-text" href="/<%=user.handle%>"> <%= user.handle %></a></li>
+    <li><%= user.tweets.count %> tweets in the system</li>
+    <%user.tweets.each do |tweet|%>
+    <%=tweet.full_text %><br>
+    <% end %><br>
+  <% end %>
 </ul>
 <ul>
