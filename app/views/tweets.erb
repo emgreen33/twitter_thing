@@ -1,0 +1,13 @@
+
+<h1>Tweets By: <%= @user.handle %></h1>
+
+<ul>
+  <% @tweets.each do |tweet| %>
+    <li><%= tweet.full_text %></li>
+  <% end %>
+</ul>
+
+
+<% if @user.handle == "cheeryconverter" %>
+  <%= erb :'post_tweet' %>
+<% end %>

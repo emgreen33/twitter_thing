@@ -1,0 +1,12 @@
+<form action="/" method="post">
+  <input type="text" placeholder="username" name="twitter_handle">
+  <input type="submit" value="Show me the tweets">
+</form>
+
+<ul>
+  <% @users.each do |user| %>
+    <li>twitter handle:   <%= user.handle %></li>
+    <li><%= user.tweets.count %> tweets in the system</li><br><br>
+  <% end %>
+</ul>
+<ul>
