@@ -1,24 +1,25 @@
+<% if @user.handle.downcase != "cheeryconverter"%>
+  <h1>Tweets By: <%= @user.handle %></h1>
 
-<h1>Tweets By: <%= @user.handle %></h1>
+  <ul>
+    <% @tweets.each do |tweet| %>
+      <li><%= tweet.full_text %></li>
+    <% end %>
+  </ul>
 
-<ul>
-  <% @tweets.each do |tweet| %>
-    <li><%= tweet.full_text %></li>
-  <% end %>
-</ul>
-
-<h2>Tweets mentioning: <%= @user.handle %></h2>
-<ul>
-  <% @mentions.each do |mentioned_tweet| %>
-    <% if temperature_question(mentioned_tweet) %>
-      <li><%= mentioned_tweet %>
-      <li><% new_tweet = "@#{mentioned_tweet.user.screen_name}" + make_tweet(mentioned_tweet) %></li>
-      <% @user.client.update(make_tweet(mentioned_tweet)) %>
+<%else%>
+  <h2>Temperature conversion ft. <%= @user.handle %></h2>
+  <ul>
+    <% @mentions.each do |mentioned_tweet| %>
+      <% if temperature_question(mentioned_tweet.full_text) %>
+        <li><%= mentioned_tweet.full_text %>
+        <% new_tweet = "@#{mentioned_tweet.user.screen_name} " + make_tweet(mentioned_tweet.full_text) %>
+        <li><%= new_tweet %></li><br>
+        <% @user.client.update(new_tweet, in_reply_to_status_id: mentioned_tweet.id) %>
+      <%end%>
     <%end%>
-  <%end%>
-</ul>
+  </ul>
+    <%= erb :'post_tweet' %>
+<%end%>
 
 
-<% if @user.handle == "cheeryconverter" %>
-  <%= erb :'post_tweet' %>
-<% end %>

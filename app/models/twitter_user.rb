@@ -15,14 +15,9 @@ class TwitterUser < ActiveRecord::Base
     self.tweets.first.created_at >= 1.minute.ago
   end
 
-  def mentions
-    client.mentions_timeline.map {|tweet| tweet.full_text}
-  end
 
-  def stream
-    streaming_client.filter(track:"cheeryconverter") do |tweet|
-      tweet.text
-    end
+  def mentions
+    client.mentions_timeline.map {|tweet| tweet}
   end
 
   def client
@@ -31,6 +26,12 @@ class TwitterUser < ActiveRecord::Base
       config.consumer_secret = ENV['consumer_secret']
       config.access_token = ENV['access_token']
       config.access_token_secret = ENV['access_secret']
+    end
+  end
+
+  def stream
+    streaming_client.filter(track:"cheeryconverter") do |tweet|
+      tweet.text
     end
   end
 

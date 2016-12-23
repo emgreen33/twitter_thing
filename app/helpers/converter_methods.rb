@@ -22,6 +22,8 @@ helpers do
       new_num = convert_to_celsius(num).to_s + "°C"
     elsif tweet.include?("celsius") || tweet.include?("°C")
       new_num = convert_to_farenheit(num).to_s + "°F"
+    elsif tweet.include?("-")
+      new_num = "no I can't... "
     end
     tweet = "#{new_num}... obviously"
   end
