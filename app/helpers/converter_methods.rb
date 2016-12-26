@@ -9,7 +9,6 @@ helpers do
   end
 
   def find_num(tweet)
-    # num = tweet[/\d+/].to_i
     num = tweet[/-?[0-9]\d*(\.\d+)?/].to_i
   end
 
@@ -23,8 +22,6 @@ helpers do
       new_num = convert_to_celsius(num).to_s + "°C"
     elsif tweet.include?("celsius") || tweet.include?("°C")
       new_num = convert_to_farenheit(num).to_s + "°F"
-    elsif tweet.include?("-")
-      new_num = "no I can't... "
     end
     tweet = "#{new_num}... obviously"
   end
